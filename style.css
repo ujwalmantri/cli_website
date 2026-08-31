@@ -1,3 +1,31 @@
 #output {
     white-space: pre-wrap;
 }
+
+body {
+    margin: 0;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+    font-family: monospace;
+}
+
+#command-input {
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    outline: none;
+    width: 100%;
+}
+
+#prompt-line {
+    display: flex;
+    align-items: center;
+}
+
+#prompt-line span {
+    margin-right: 8px;
+    white-space: pre;
+}
+
