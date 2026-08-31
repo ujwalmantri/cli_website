@@ -15,6 +15,7 @@ const commands = {
             "about   - about me\n" + 
             "clear   - clear the terminal\n" +
             "help    - check available commands\n" +
+            "whoami  - display visitor info\n"+
             "\n";
     },
 

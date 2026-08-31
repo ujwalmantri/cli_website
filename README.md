@@ -17,6 +17,15 @@ It covers sections like (about, projects, skills, experience, education, and con
 - Unknown commands are handled with a fallback message
 - no styling/theming, animations, command history, or additional commands yet
 
+**Day2 -Styling and Interaction Improvements**
+
+- Terminal-style visual theme (dark background, monospace font, styled prompt)
+- Command handling refactored into a registry for easier maintenance
+- Commands echo into a persistent scrollback, like a real terminal
+- Working commands 'help', 'about', 'clear', 'whoami'
+- Input trimming and empty-input handling to match real terminal behaviour
+- Still no responsive/mobile design, command history, or additional content commands (`projects`, `skills`, etc.)
+
 ## Technology Stack
 
 - **HTML** — page structure
@@ -65,6 +74,7 @@ Once opened in a web browser, type a command into the input firld and press Ente
 | `help`  | List available commands |
 | `about` | Display a short introduction |
 | `clear` | Clear the terminal output |
+| 'whoami'| Display visitor info |
 
 ## Testing
 
@@ -76,11 +86,13 @@ No automated tests exist yet. Each command was manually tested in the browser af
 - Terminal-style input and output
 - `help`, `about`, `clear` commands
 - Unknown command handling
+- Terminal -style visual theming
+- Command registry architecture for easier maintenance
+- Command echoing and scrollback history display
 
 **Planned**
 - Additional commands: `projects`, `skills`, `experience`, `education`, `contact`
 - Command history and arrow-key navigation
-- Terminal-style visual theming
 - Responsive design for mobile and tablet
 - Accessibility improvements
 - Deployment to a live URL
@@ -90,3 +102,7 @@ No automated tests exist yet. Each command was manually tested in the browser af
 **Day1**
 - Basics of HTML and JavaScript
 - Git Fundamentals
+
+**Day2**
+- Basics of CSS
+- Using Objects in JavaScript to store key:value pairs
