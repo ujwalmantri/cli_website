@@ -7,6 +7,25 @@ const whoamiText =
 "focus     machine learning, mathematics, boxing\n"+
 "type      'help' to see available commands\n" + 
 "\n";
+const skillsList = [
+    "Python",
+    "SQL",
+    "HTML, CSS, JavaScript",
+    "Git & version control"
+]
+
+const projectsList = [
+    {
+        name: "Numcore",
+        description: "Python library of mathematical functions, published on PyPI.",
+        link: "https://github.com/ujwalmantri/numcore"
+    },
+    {
+        name: "Image Pracessing Engine",
+        description: "Basic image processing using matrix operations in Python. (in progress)",
+        link:"https://github.com/ujwalmantri/image-processing-engine"
+    }
+];
 
 
 const commands = {
@@ -15,6 +34,8 @@ const commands = {
             "about   - about me\n" + 
             "clear   - clear the terminal\n" +
             "help    - check available commands\n" +
+            "projects - list my projects\n" +
+            "skills  - list my skills\n" +
             "whoami  - display visitor info\n"+
             "\n";
     },
@@ -34,6 +55,20 @@ const commands = {
 
     whoami: function () {
         output.textContent = output.textContent + whoamiText;
+    },
+
+    skills: function () {
+        for (const skill of skillsList){
+            output.textContent = output.textContent + "- " + skill + "\n";
+        }
+        output.textContent = output.textContent + "\n";
+    },
+
+    projects: function () {
+        for (let i = 0; i < projectsList.length; i++){
+            output.textContent = output.textContent + (i+1) + ". " + projectsList[i].name + "\n";
+        }
+        output.textContent = output.textContent + "\n";
     }
 };
 

@@ -74,7 +74,7 @@ Once opened in a web browser, type a command into the input firld and press Ente
 | `help`  | List available commands |
 | `about` | Display a short introduction |
 | `clear` | Clear the terminal output |
-| 'whoami'| Display visitor info |
+| `whoami` | Display visitor info |
 
 ## Testing
 
