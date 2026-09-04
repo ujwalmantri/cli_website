@@ -26,17 +26,44 @@ const projectsList = [
         link:"https://github.com/ujwalmantri/image-processing-engine"
     }
 ];
+const experienceList = [
+    // Example: 
+    // {role: "Intern", organization: "Company Name", period: "Jun 2026 - Aug 2026"}
+]
+
+const educationList = [
+    {
+        institution: "MIT-WPU",
+        degree: "B.Tech in Computer Science and Engineering",
+        period: "2025-2029"
+    }
+];
+
+const contactEmail = "uzwalmantri@gmail.com";
+
+const SocialList = [
+    { platform: "Github", url: "https://github.com/ujwalmantri" },
+    { platform: "LinkedIn", url: "https://www.linkedin.com/in/ujwal-mantri/" },
+    { platform: "Twitter", url: "https://twitter.com/ujwal_mantri" }
+];
+
+let commandHistory = [];
+let historyIndex = -1;
 
 
 const commands = {
     help: function (){
         output.textContent = output.textContent + 
-            "about   - about me\n" + 
-            "clear   - clear the terminal\n" +
-            "help    - check available commands\n" +
-            "projects - list my projects\n" +
-            "skills  - list my skills\n" +
-            "whoami  - display visitor info\n"+
+            "about      - about me\n" + 
+            "clear      - clear the terminal\n" +
+            "contact    - my email address\n" +
+            "education  - my education background\n" +
+            "experience - my work experience\n" +
+            "help       - check available commands\n" +
+            "projects   - list my projects\n" +
+            "skills     - list my skills\n" +
+            "socials    - my social accounts\n" +
+            "whoami     - display visitor info\n" +
             "\n";
     },
 
@@ -69,7 +96,44 @@ const commands = {
             output.textContent = output.textContent + (i+1) + ". " + projectsList[i].name + "\n";
         }
         output.textContent = output.textContent + "\n";
+    },
+
+    experience: function () {
+        if (experienceList.length === 0){
+            output.textContent = output.textContent +
+            "No formal experience yet - actively looking for opportunities.\n" +
+            "\n";
+        } else {
+            for (const job of experienceList){
+                output.textContent = output.textContent + 
+                job.role + " at " + job.organization + " (" + job.period + ")\n" +
+                "\n";
+            }
+        }
+    },
+
+    education: function (){
+        for (const edu of educationList){
+            output.textContent = output.textContent +
+            edu.institution + "\n" + edu.degree + " ("+edu.period + ")\n" +
+            "\n";
+        }
+    },
+
+    contact: function (){
+        output.textContent = output.textContent + 
+        "Email: " + contactEmail + "\n" +
+        "\n";
+    },
+
+    socials: function (){
+        for (const social of SocialList){
+            output.textContent = output.textContent + 
+            social.platform + ": " + social.url + "\n";        
+        } 
+        output.textContent = output.textContent + "\n"; 
     }
+
 };
 
 input.addEventListener("keydown", function (event){
@@ -82,14 +146,35 @@ input.addEventListener("keydown", function (event){
             // eat 5 star; do nothing
         }
         else if (command in commands){
+            commandHistory.push(command);
             commands[command]();
         } else {
+            commandHistory.push(command);
             output.textContent = output.textContent +
             "Command not found: " + command + "\n" +
             "Type 'help' to see available commands.\n";
         }
 
         input.value = "";
+    } else if(event.key === "ArrowUp"){
+        event.preventDefault();
+        if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1){
+            historyIndex = historyIndex + 1;
+            input.value = commandHistory[commandHistory.length - 1 - historyIndex];
+            input.selectionStart = input.value.length;
+            input.selectionEnd = input.value.length;
+        }
+    } else if (event.key === "ArrowDown"){
+        event.preventDefault();
+        if (historyIndex > 0) {
+            historyIndex = historyIndex - 1;
+            input.value = commandHistory[commandHistory.length - 1 - historyIndex]
+        } else if (historyIndex === 0){
+            historyIndex = -1;
+            input.value = ""
+        }
+        input.selectionStart = input.value.length;
+        input.selectionEnd = input.value.length;
     }
 });
 
