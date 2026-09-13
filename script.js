@@ -54,16 +54,17 @@ let historyIndex = -1;
 const commands = {
     help: function (){
         output.textContent = output.textContent + 
-            "about      - about me\n" + 
-            "clear      - clear the terminal\n" +
-            "contact    - my email address\n" +
-            "education  - my education background\n" +
-            "experience - my work experience\n" +
-            "help       - check available commands\n" +
-            "projects   - list my projects\n" +
-            "skills     - list my skills\n" +
-            "socials    - my social accounts\n" +
-            "whoami     - display visitor info\n" +
+            "about          - about me\n" + 
+            "clear          - clear the terminal\n" +
+            "contact        - my email address\n" +
+            "education      - my education background\n" +
+            "experience     - my work experience\n" +
+            "help           - check available commands\n" +
+            "projects       - list my projects\n" +
+            "project go <n> - view details of project number n\n" +
+            "skills         - list my skills\n" +
+            "socials        - my social accounts\n" +
+            "whoami         - display visitor info\n" +
             "\n";
     },
 
@@ -95,7 +96,33 @@ const commands = {
         for (let i = 0; i < projectsList.length; i++){
             output.textContent = output.textContent + (i+1) + ". " + projectsList[i].name + "\n";
         }
+        output.textContent = output.textContent + "Usage: project go <n>\n";
         output.textContent = output.textContent + "\n";
+    },
+
+    project: function (args) {
+        if (args[0] === "go" && args[1]){
+            let index = Number(args[1])-1;
+
+            if (projectsList[index]){
+                let selected = projectsList[index];
+                output.textContent = output.textContent + selected.name + "\n" + 
+                " " + selected.description + "\n" +
+                " " + selected.link + "\n" +
+                "\n";
+            }
+            else {
+                output.textContent = output.textContent + 
+                "No project found with that number. Type 'projects' to see the list.\n"
+                +
+                "\n";
+            }
+        }
+        else {
+            output.textContent = output.textContent + 
+            "Usage: project go <n>\n" +
+            "\n";
+        }
     },
 
     experience: function () {
@@ -138,24 +165,29 @@ const commands = {
 
 input.addEventListener("keydown", function (event){
     if (event.key === "Enter"){
+        let raw_input = input.value.trim();
+        output.textContent = output.textContent + promptText + " " + raw_input + "\n";
 
-        let command = input.value.trim();
-
-        output.textContent = output.textContent + promptText + " " + command + "\n"
-        if(command === ""){
+        if(raw_input === ""){
             // eat 5 star; do nothing
-        }
-        else if (command in commands){
-            commandHistory.push(command);
-            commands[command]();
+        }else {
+            let parts = raw_input.split(" ");
+            let command = parts[0];
+            let args = parts.slice(1);
+
+            if (command in commands){
+            commandHistory.push(raw_input);
+            commands[command](args);
         } else {
-            commandHistory.push(command);
+            commandHistory.push(raw_input);
             output.textContent = output.textContent +
             "Command not found: " + command + "\n" +
             "Type 'help' to see available commands.\n";
         }
+        }
 
         input.value = "";
+        historyIndex = -1;
     } else if(event.key === "ArrowUp"){
         event.preventDefault();
         if (commandHistory.length > 0 && historyIndex < commandHistory.length - 1){

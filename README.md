@@ -39,6 +39,10 @@ It covers sections like (about, projects, skills, experience, education, and con
 - `experience` correctly handles an empty state (no experience yet) with a real, ready-to-use structure for future entries
 - All 10 commands from the original project scope are now implemented 
 
+**Day 5 - Project detail view**
+- Added `project go <n>` command for viewing a single project's full details(name, description, link)
+- Includes proper handling for missing/invalid arguments and out-of-range project numbers
+
 ## Technology Stack
 
 - **HTML** — page structure
@@ -94,6 +98,7 @@ Once opened in a web browser, type a command into the input firld and press Ente
 | `education`  | Display education background |
 | `contact`    | Display contact email |
 | `socials`    | List social/professional links |
+| `project go <n>` | Detailed view of a particular project |
 
 ## Testing
 
@@ -108,9 +113,10 @@ No automated tests exist yet. Each command was manually tested in the browser af
 - Command echoing and scrollback history display
 - Command history with arrow-key (↑/↓) navigation
 - All core commands: help`, `about`, `clear`, `whoami`, `skills`, `projects`, `experience`, `education`, `contact`, `socials`
+- `project go <n> - detailed view for a specific project
+
 
 **Planned**
-- `project go <n> - detailed view for a specific project
 - `certifications` command
 - Responsive design for mobile and tablet
 - Accessibility improvements
@@ -131,3 +137,6 @@ No automated tests exist yet. Each command was manually tested in the browser af
 
 **Day4**
 - Placeholding and loops
+
+**Day5**
+- Slicing and list related methods
