@@ -29,3 +29,6 @@ body {
     white-space: pre;
 }
 
+html, body {
+    height: 100%;
+}

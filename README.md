@@ -43,6 +43,12 @@ It covers sections like (about, projects, skills, experience, education, and con
 - Added `project go <n>` command for viewing a single project's full details(name, description, link)
 - Includes proper handling for missing/invalid arguments and out-of-range project numbers
 
+**Day 6 — Mobile responsiveness pass**
+
+- Added the viewport meta tag, fixing incorrect mobile scaling
+- Verified core functionality (typing, command history, output display, scrolling) works correctly on a real phone over a local network
+- Known minor issue: long lines in `help` output can wrap awkwardly on very narrow screens (not addressed — low priority)
+
 ## Technology Stack
 
 - **HTML** — page structure
@@ -113,12 +119,11 @@ No automated tests exist yet. Each command was manually tested in the browser af
 - Command echoing and scrollback history display
 - Command history with arrow-key (↑/↓) navigation
 - All core commands: help`, `about`, `clear`, `whoami`, `skills`, `projects`, `experience`, `education`, `contact`, `socials`
-- `project go <n> - detailed view for a specific project
-
+- `project go <n>` - detailed view for a specific project
+- Responsive design for mobile and tablet
 
 **Planned**
 - `certifications` command
-- Responsive design for mobile and tablet
 - Accessibility improvements
 - Deployment to a live URL
 
